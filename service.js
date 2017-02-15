@@ -24,18 +24,27 @@ module.exports = (function () {
         function add(params, callback) {
             setTimeout(() => {
 
-                var newUser = new User(params.name, params.age, params.login, params.password);
-                newUser.id = users.length + 1;
+                if (params) {
 
-                users.push(newUser);
-                callback(newUser)
+                    var newUser = new User(params.name, params.age, params.login, params.password);
+                    newUser.id = users.length + 1;
+
+                    users.push(newUser);
+                    callback(null, newUser);
+                } else {
+                    callback(new Error('invalid input'), null);
+                }
 
             }, 1000)
         }
 
-        function getAll(callback) {
+        function getAll(flag, callback) {
             setTimeout(() => {
-                callback(users)
+                if (flag === 1) {
+                    callback(null, users)
+                }else {
+                    callback(new Error('invalid input'), null);
+                }
 
             }, 1000)
         }
@@ -44,10 +53,10 @@ module.exports = (function () {
             setTimeout(() => {
 
                 if (id > users.length) {
-                    return callback(new Error("NOT FOUND"));
+                    return callback(new Error("NOT FOUND"), null);
                 } else {
                     var foundedUser = users[id - 1];
-                    callback(foundedUser);
+                    callback(null, foundedUser);
                 }
             }, 1000)
         }
