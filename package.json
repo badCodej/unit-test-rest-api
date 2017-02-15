@@ -10,7 +10,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.16.1",
+    "chai": "^3.5.0",
     "express": "^4.14.1",
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "sinon": "^1.17.7"
   }
 }
