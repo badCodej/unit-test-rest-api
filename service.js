@@ -11,14 +11,11 @@ module.exports = (function () {
 
     function init() {
 
-        var user = new User("Jon Doe", 20, "jondoe", "123abc");
-        user.id = users.length + 1;
-        users.push(user);
-
         return {
             add: add,
             getAll: getAll,
-            getById: getById
+            getById: getById,
+            removeUsers: removeUsers
         }
 
         function add(params, callback) {
@@ -42,7 +39,7 @@ module.exports = (function () {
             setTimeout(() => {
                 if (flag === 1) {
                     callback(null, users)
-                }else {
+                } else {
                     callback(new Error('invalid input'), null);
                 }
 
@@ -59,6 +56,10 @@ module.exports = (function () {
                     callback(null, foundedUser);
                 }
             }, 1000)
+        }
+
+        function removeUsers() {
+            users = [];
         }
 
     }
